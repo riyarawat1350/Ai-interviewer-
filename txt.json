@@ -1,0 +1,15 @@
+{
+    "Strings":  [
+                    "authSource=admin\u0026replicaSet=atlas-qs4fl8-shard-0"
+                ],
+    "Name":  "hacathon.2fi6kaz.mongodb.net",
+    "Type":  16,
+    "CharacterSet":  1,
+    "Section":  1,
+    "DataLength":  16,
+    "TTL":  60,
+    "QueryType":  16,
+    "Text":  [
+                 "authSource=admin\u0026replicaSet=atlas-qs4fl8-shard-0"
+             ]
+}

@@ -1,0 +1,44 @@
+[
+    {
+        "NameTarget":  "ac-gulklf0-shard-00-01.2fi6kaz.mongodb.net",
+        "Priority":  0,
+        "Weight":  0,
+        "Port":  27017,
+        "Name":  "_mongodb._tcp.hacathon.2fi6kaz.mongodb.net",
+        "Type":  33,
+        "CharacterSet":  1,
+        "Section":  1,
+        "DataLength":  16,
+        "TTL":  32,
+        "QueryType":  33,
+        "Target":  "ac-gulklf0-shard-00-01.2fi6kaz.mongodb.net"
+    },
+    {
+        "NameTarget":  "ac-gulklf0-shard-00-02.2fi6kaz.mongodb.net",
+        "Priority":  0,
+        "Weight":  0,
+        "Port":  27017,
+        "Name":  "_mongodb._tcp.hacathon.2fi6kaz.mongodb.net",
+        "Type":  33,
+        "CharacterSet":  1,
+        "Section":  1,
+        "DataLength":  16,
+        "TTL":  32,
+        "QueryType":  33,
+        "Target":  "ac-gulklf0-shard-00-02.2fi6kaz.mongodb.net"
+    },
+    {
+        "NameTarget":  "ac-gulklf0-shard-00-00.2fi6kaz.mongodb.net",
+        "Priority":  0,
+        "Weight":  0,
+        "Port":  27017,
+        "Name":  "_mongodb._tcp.hacathon.2fi6kaz.mongodb.net",
+        "Type":  33,
+        "CharacterSet":  1,
+        "Section":  1,
+        "DataLength":  16,
+        "TTL":  32,
+        "QueryType":  33,
+        "Target":  "ac-gulklf0-shard-00-00.2fi6kaz.mongodb.net"
+    }
+]
