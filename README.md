@@ -2,306 +2,140 @@
 
 <div align="center">
 
-![AI Interviewer](https://img.shields.io/badge/AI-Interviewer-8b5cf6?style=for-the-badge&logo=openai&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-18+-10b981?style=for-the-badge&logo=node.js&logoColor=white)
-![React](https://img.shields.io/badge/React-18-61dafb?style=for-the-badge&logo=react&logoColor=black)
-![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47a248?style=for-the-badge&logo=mongodb&logoColor=white)
-![Ollama](https://img.shields.io/badge/Ollama-Local_AI-ff6b35?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+![AI Interviewer Banner](docs/images/banner.png)
 
-**An adaptive, AI-powered mock interview platform with real-time feedback, cognitive analysis, and daily practice challenges — powered by a local Ollama LLM.**
+### Elevate your career with local AI-powered mock interviews.
+**Adaptive • Cognitive Analysis • Privacy First • Real-time Feedback**
 
-[Features](#-features) • [Tech Stack](#-tech-stack) • [Getting Started](#-getting-started) • [Project Structure](#-project-structure) • [Environment Variables](#-environment-variables) • [API Reference](#-api-reference)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-10b981?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![React](https://img.shields.io/badge/React-18-61dafb?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47a248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/atlas)
+[![Ollama](https://img.shields.io/badge/Ollama-Local_AI-ff6b35?style=for-the-badge)](https://ollama.com)
+[![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
+
+[Features](#-key-features) • [How it Works](#-how-it-works) • [Tech Stack](#-the-tech-stack) • [Setup Guide](#-setup-guide) • [Architecture](#-project-architecture)
 
 </div>
 
 ---
 
-## ✨ Features
+## ⚡ Key Features
 
-| Feature | Description |
-|---|---|
-| 🧠 **AI-Powered Interviews** | Dynamic question generation via local Ollama LLM (llama3.2) |
-| 💬 **Real-time Feedback** | WebSocket-based live evaluation as you answer |
-| 📊 **Detailed Analytics** | Score breakdowns across communication, technical, and behavioral domains |
-| 🗓️ **Daily Practice** | 5-question daily challenges (Communication, Aptitude, General Knowledge) |
-| 🏆 **Achievements & Streaks** | Gamified progress tracking with streak rewards |
-| 🔐 **JWT Authentication** | Secure access + refresh token rotation |
-| 🌐 **Adaptive Difficulty** | Questions scale with your performance over time |
-| 🛡️ **Privacy First** | All AI runs locally — no data sent to external AI APIs |
+![AI Interviewer Features](docs/images/features.png)
+
+-   **🧠 Adaptive AI Core:** Powered by **Ollama** (`llama3.2`), the system dynamically generates questions based on your background and real-time performance.
+-   **💬 Real-Time Cognitive Feedback:** Not just "correct" or "incorrect." Get deep analytical feedback via **WebSockets** as you answer.
+-   **📈 Detailed Analytics Dashboard:** Visualize your growth with category-wise scoring (Communication, Technical, Behavioral, and Confidence).
+-   **🔥 Daily Practice Arena:** Maintain your streak! Tackle 5 unique daily challenges across diverse domains like Aptitude, General Knowledge, and Verbal Ability.
+-   **🛡️ Privacy First:** Unlike commercial AI interviewers, your data and conversations stay local. Powered by your own GPU/CPU via Ollama.
+-   **🎮 Gamified Experience:** Earn achievements, track streaks, and climb the leaderboard as you master your interview skills.
 
 ---
 
-## 🛠 Tech Stack
+## 🏗️ How it Works
 
-### Backend
-- **Runtime:** Node.js 18+ (ESM modules)
-- **Framework:** Express.js
-- **Database:** MongoDB (Mongoose ODM)
-- **Real-time:** Socket.IO
-- **AI Engine:** [Ollama](https://ollama.com) (local LLM — `llama3.2` or `gemma2`)
-- **Auth:** JWT (access + refresh tokens)
-- **Security:** Helmet, CORS, express-rate-limit
+The AI Interviewer uses a **loop-based cognitive feedback system**:
 
-### Frontend
-- **Framework:** React 18 + Vite
-- **State:** Zustand
-- **Routing:** React Router v6
-- **Styling:** Tailwind CSS + custom Uiverse.io-inspired animations
-- **HTTP:** Axios (with auto token refresh interceptor)
-- **Carousel:** Swiper.js
-
-### DevOps
-- Docker + Docker Compose
-- Google Cloud Run ready (`cloudbuild.yaml`)
+1.  **Context Loading:** The server pulls your skills and targeted role from your profile.
+2.  **AI Orchestration:** Ollama generates an initial question tailored to your level.
+3.  **Real-Time Processing:** As you send your answer, the Backend evaluates it for clarity, technical accuracy, and structure.
+4.  **Feedback Loop:** The AI adjusts difficulty—if you ace a question, the next one pushes your limits. If you struggle, it provides constructive hints.
 
 ---
 
-## 🚀 Getting Started
+## 🛠️ The Tech Stack
 
-### Prerequisites
+### High-Performance Backend
+-   **Runtime:** Node.js 18+ (ES Modules)
+-   **API Framework:** Express.js
+-   **Real-time Engine:** Socket.IO for live AI interactions
+-   **AI Foundation:** [Ollama](https://ollama.com) (Default: `llama3.2`)
+-   **Database:** MongoDB Atlas (Mongoose ODM)
+-   **Security:** JWT with Refresh Token rotation, Helmet, and Rate Limiting
 
-| Tool | Version | Purpose |
-|---|---|---|
-| Node.js | ≥ 18.0.0 | Runtime |
-| npm | ≥ 9.0.0 | Package manager |
-| MongoDB | Atlas or local | Database |
-| Ollama | Latest | Local AI model |
+### Modern Frontend
+-   **Library:** React 18 + Vite (for lightning-fast builds)
+-   **State Management:** Zustand (lightweight & scalable)
+-   **Styling:** Tailwind CSS + custom micro-animations
+-   **Interactivity:** Framer Motion & Lottie-React for high-end UI "feel"
+-   **Visuals:** Chart.js for progress tracking, Swiper.js for carousels
 
-### 1. Install Ollama & pull a model
+---
 
+## 🚀 Setup Guide
+
+### 1. Requirements
+Ensure you have **Node.js 18+**, **MongoDB**, and **Ollama** installed.
+
+### 2. Prepare AI
+Download and pull the model:
 ```bash
-# Download Ollama from https://ollama.com or run the bundled OllamaSetup.exe
 ollama pull llama3.2
-# or for faster responses on low-end hardware:
-ollama pull gemma2:2b
 ```
 
-### 2. Clone & install dependencies
-
+### 3. Installation
 ```bash
-git clone https://github.com/your-username/AI-Interviewer.git
-cd AI-Interviewer
+git clone https://github.com/riyarawat1350/Ai-interviewer-.git
+cd Ai-interviewer-
 npm install
 ```
 
-### 3. Configure environment variables
-
-```bash
-cp .env.example .env
+### 4. Configuration
+Create a `.env` in the root:
+```env
+MONGODB_URI=your_mongodb_atlas_uri
+JWT_SECRET=your_jwt_secret
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_MODEL=llama3.2
 ```
 
-Edit `.env` with your values — see [Environment Variables](#-environment-variables) below.
-
-Also create `client/.env`:
-```bash
-cp client/.env.example client/.env  # if it exists, or create manually
-```
-
+Also, set up the frontend: `client/.env`
 ```env
 VITE_API_URL=http://localhost:5000/api
 VITE_SOCKET_URL=http://localhost:5000
 ```
 
-### 4. Seed daily practice questions (optional)
-
+### 5. Launch
 ```bash
-cd server
-node seed_daily.js
-```
-
-### 5. Run in development
-
-```bash
-# From the root — starts both server and client concurrently
+# Start both server and client together
 npm run dev
 ```
 
-| Service | URL |
-|---|---|
-| Frontend | http://localhost:3000 |
-| Backend API | http://localhost:5000/api |
-| Health Check | http://localhost:5000/api/health |
-
 ---
 
-## 📁 Project Structure
+## 📁 Project Architecture
 
-```
-AI-Interviewer/
-├── client/                      # React + Vite frontend
+```text
+├── client/              # React + Vite (Frontend)
 │   ├── src/
-│   │   ├── components/          # Reusable UI components
-│   │   ├── pages/               # Route-level pages
-│   │   │   ├── Landing.jsx      # Marketing landing page
-│   │   │   ├── Dashboard.jsx    # User dashboard
-│   │   │   ├── DailyPractice.jsx
-│   │   │   ├── interview/       # Interview flow pages
-│   │   │   └── auth/            # Login / Register
-│   │   ├── stores/              # Zustand state stores
-│   │   │   ├── authStore.js
-│   │   │   ├── interviewStore.js
-│   │   │   └── dailyPracticeStore.js
-│   │   ├── services/
-│   │   │   └── api.js           # Axios instance + interceptors
-│   │   └── index.css            # Global styles + animations
-│   ├── tailwind.config.js
-│   └── vite.config.js
-│
-├── server/                      # Node.js + Express backend
-│   └── src/
-│       ├── config/              # Centralised config loading
-│       ├── controllers/         # Route handlers
-│       ├── models/              # Mongoose schemas
-│       │   ├── User.js
-│       │   ├── InterviewSession.js
-│       │   ├── DailyQuestion.js
-│       │   └── UserDailyProgress.js
-│       ├── routes/              # Express routers
-│       ├── services/
-│       │   ├── ai/
-│       │   │   └── ollamaService.js   # Ollama LLM integration
-│       │   ├── dailyQuestionsService.js
-│       │   └── analytics/
-│       │       └── analyticsService.js
-│       ├── websocket/
-│       │   └── socketHandler.js      # Socket.IO events
-│       └── middleware/          # Auth, error handling, rate limiting
-│
-├── .env.example                 # Template for environment variables
-├── seed_daily.js                # Daily question seeder (in server/)
-├── docker-compose.yml
-├── Dockerfile
-└── package.json                 # Root workspace config
-```
-
----
-
-## 🔐 Environment Variables
-
-Create a `.env` file in the **root** directory:
-
-```env
-# ── Server ─────────────────────────────────────────
-NODE_ENV=development
-PORT=5000
-CLIENT_URL=http://localhost:3000
-
-# ── MongoDB ────────────────────────────────────────
-MONGODB_URI=mongodb+srv://<user>:<password>@<cluster>.mongodb.net/ai-interviewer
-
-# ── JWT ────────────────────────────────────────────
-JWT_SECRET=your-super-secret-jwt-key
-JWT_EXPIRES_IN=7d
-JWT_REFRESH_SECRET=your-refresh-token-secret
-JWT_REFRESH_EXPIRES_IN=30d
-
-# ── Ollama (Local AI) ──────────────────────────────
-OLLAMA_BASE_URL=http://localhost:11434
-OLLAMA_MODEL=llama3.2
-
-# ── Rate Limiting ──────────────────────────────────
-RATE_LIMIT_WINDOW_MS=900000
-RATE_LIMIT_MAX_REQUESTS=100
-
-# ── Logging ────────────────────────────────────────
-LOG_LEVEL=debug
-```
-
-> ⚠️ **Never commit `.env` to version control.** It is already listed in `.gitignore`.
-
----
-
-## 📡 API Reference
-
-### Authentication
-| Method | Endpoint | Description |
-|---|---|---|
-| `POST` | `/api/auth/register` | Register new user |
-| `POST` | `/api/auth/login` | Login + receive tokens |
-| `POST` | `/api/auth/refresh` | Refresh access token |
-| `POST` | `/api/auth/logout` | Invalidate refresh token |
-| `GET` | `/api/auth/me` | Get current user profile |
-
-### Interviews
-| Method | Endpoint | Description |
-|---|---|---|
-| `POST` | `/api/interviews` | Create new interview session |
-| `GET` | `/api/interviews` | List user's interview history |
-| `GET` | `/api/interviews/:id` | Get session details + report |
-| `PATCH` | `/api/interviews/:id/complete` | Mark session as complete |
-
-### Daily Practice
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/daily-practice/questions` | Get today's questions + progress |
-| `POST` | `/api/daily-practice/submit` | Submit an answer |
-| `GET` | `/api/daily-practice/stats` | Get user stats |
-| `GET` | `/api/daily-practice/streak` | Get streak info |
-| `GET` | `/api/daily-practice/leaderboard` | Top users leaderboard |
-
-### WebSocket Events
-| Event | Direction | Description |
-|---|---|---|
-| `interview:start` | Client → Server | Begin an interview session |
-| `interview:answer` | Client → Server | Submit answer to current question |
-| `interview:question` | Server → Client | Receive next AI question |
-| `interview:feedback` | Server → Client | Receive AI evaluation |
-| `interview:complete` | Server → Client | Session end + final score |
-
----
-
-## 🐳 Docker
-
-```bash
-# Build and start all services
-npm run docker:up
-
-# Stop all services
-npm run docker:down
-```
-
----
-
-## 🧪 Development Scripts
-
-```bash
-# Root workspace
-npm run dev           # Start client + server concurrently
-npm run build         # Production build (client + server)
-npm run lint          # Lint all workspaces
-
-# Server only (cd server/)
-npm run dev           # nodemon hot-reload
-node seed_daily.js    # Seed today's daily questions
-node check_db.js      # Verify MongoDB connection
-
-# Client only (cd client/)
-npm run dev           # Vite dev server on :3000
-npm run build         # Production bundle
+│   │   ├── components/  # Atomic UI components
+│   │   ├── pages/       # Dashboard, Landing, Interview Arena
+│   │   └── stores/      # Zustand Global State
+├── server/              # Node.js + Express (Backend)
+│   ├── src/
+│   │   ├── services/    # AI, Analytics & Daily Logic
+│   │   ├── websocket/   # Live Socket handlers
+│   │   └── controllers/ # API Endpoint logic
+└── docs/                # Project Documentation & Assets
 ```
 
 ---
 
 ## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch: `git checkout -b feat/amazing-feature`
-3. Commit your changes: `git commit -m 'feat: add amazing feature'`
-4. Push to the branch: `git push origin feat/amazing-feature`
+Contributions are what make the open-source community an amazing place to learn, inspire, and create.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
 ---
 
 ## 📜 License
-
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
-
----
+Distributed under the **MIT License**. See `LICENSE` for more information.
 
 <div align="center">
-Built with ❤️ for the GDG Hackathon 2026
+
+Built with ❤️ for **GDG Hackathon 2026**
+
 </div>
-#   A i - i n t e r v i e w e r -  
- #   A i - i n t e r v i e w e r -  
- 
